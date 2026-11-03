@@ -24,6 +24,7 @@ Stop when each dependency strand is labeled `known`, `edge`, `unknown`, or `bloc
 Reason how to teach **this mind** **this goal**. Do not wing it.
 
 - Build a dependency DAG. Each node is one reasoning step, not a chapter.
+- Tag every node `truth`, `discover` or `step` and draw each tag with its shape ([discovery.md](discovery.md)). Discover nodes hang only off locked or earlier nodes.
 - Start from `known`. Path through `edge`. Do not start in `unknown` with no ramp.
 - Build from the prep notes when the goal follows a source deck (`.alvar/prep/<deck-slug>.md`; run **Prep** first if they are missing or stale, see [agents.md](agents.md)).
 - Verify the claims the plan will treat as fact with the **Verifier** agent ([agents.md](agents.md)): definitions, rules, formulas, named results, and anything beyond the source. It runs while the learner reads the plan; check its verdicts before teaching each node.
@@ -39,7 +40,8 @@ Walk the DAG. One node per turn.
 - If a picture would lock the idea, hand it to the **Visual** agent (`learn-visual`; inline if no subagents) and keep teaching in words while it draws.
 - If an inserted node or a side-question answer adds a claim beyond the source, send it to the **Verifier** and mark it "(being checked)" until the verdict is back.
 - After the step, ask one constructed-response lock-in from [lock-in-response.md](lock-in-response.md). Require the learner to generate the decisive move rather than recognize it from choices. Three reasons: they cannot gaslight themselves; you stay calibrated; applying and explaining the idea is how it locks in.
-- Advance only on lock-in. Fail → stay, or insert a prerequisite node.
+- Deliver each node in its tagged style: truth plainly, discover as a motivated path from a concrete problem, step as usual ([discovery.md](discovery.md)).
+- Advance only on lock-in. Fail → stay, or insert a prerequisite node. Confusion or a rote retry → switch the node to discovery ([discovery.md](discovery.md)).
 - Accept questions mid-step. Do not "finish the lesson" over them.
 - Give them things they can accept at face value only after the step they rest on is locked.
 - Persist what happened in the session file.

@@ -19,6 +19,10 @@ Based on [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmet
 | `learn-verify` | fact-check a claim before it is taught |
 | `learn-visual` | one SVG per idea, viewed and fixed before use |
 
+## Discovery style
+
+`teach` tags each plan node `truth` (a fact accepted as stated, no conditions), `discover` (a result that feels arbitrary unless you see how it could have been found) or `step` (everything else). Discover nodes open with a concrete problem and walk a motivated path to the result. A node also switches to discovery mid-lesson when the learner is confused ("explain this further", "I don't understand this"), when a retry shows rote matching, or on request; "just tell me" always wins. See [`teach/references/discovery.md`](teach/references/discovery.md).
+
 ## Helper agents
 
 `teach` hands four jobs to separate agents (subagents where the harness supports them, inline otherwise), defined in [`teach/references/agents.md`](teach/references/agents.md):

@@ -71,6 +71,8 @@ Copy no more than a sentence or a table at a time; summarise everything else.
 
 **Independence.** Give the Verifier only the claims, each as a neutral falsifiable sentence with an id and the page it is supposed to come from, plus the sources (the prep notes, the deck itself, and permission to search the web for claims marked beyond the source). Do not give it the lesson text, your reasoning, or the verdict you expect. Do not write "confirm that…"; write "check whether…".
 
+**Truth nodes.** For every node tagged `truth` ([discovery.md](discovery.md)), also ask: "Is this true with no conditions or exceptions?" The Verifier adds `unconditional: yes` or `unconditional: no (<the condition>)` to that row's "teach as" cell. A `no` means it is not a truth: retag it as a step, or plan one level lower.
+
 **Batching.** Up to about eight claims per agent; split a large plan across agents run in parallel. Each claim is judged on its own.
 
 **Brief.** Follow the `learn-verify` skill ("As the Verifier agent"). Return only:
@@ -111,7 +113,7 @@ Only one writer at a time: never run Scribe while you are still writing the same
 ## Resume here
 Updated: <ISO timestamp>
 - Goal: <one sentence>
-- Plan status: locked <nodes>; edge <nodes, each with the evidence in a few words>; next <node>
+- Plan status: locked <nodes>; edge <nodes, each with the evidence in a few words>; next <node> (style: step | truth | discover)
 - Pending check (verbatim): <prompt, with its data> — learner answer: none | partial (<what is missing>)
 - Expected answer (tutor only, never show the learner): <one or two lines>
 - Open learner questions: <list or none>
