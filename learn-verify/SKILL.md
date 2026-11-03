@@ -57,3 +57,13 @@ confirmed | qualified | contradicted | unknown
 - No invented papers, quotes, or page numbers.
 - One claim per run. Batch only if they are the same fact in different words.
 - Write the verdict into the session file if a teach session is open.
+
+## As the Verifier agent
+
+When `teach` starts you as its Verifier (see [../teach/references/agents.md](../teach/references/agents.md)), the brief holds several claims, each with an id and the page it should come from.
+
+- Judge each claim separately with the method above. The one-claim rule does not apply to this batch.
+- Check course claims against the cited page of the deck (or the prep notes, then the deck if the notes are unclear). Use outside sources only for claims marked beyond the source, or when the deck itself looks wrong.
+- You know only the claims, not the lesson. Do not guess what the tutor meant; judge the sentence as written.
+- Write no files. Return only the table: `| id | claim | verdict | source (page or URL actually opened) | teach as |`.
+- If the brief repeats an assessed-work rule, follow it: never open or quote a lab or assignment deliverable.

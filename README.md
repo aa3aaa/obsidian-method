@@ -19,6 +19,17 @@ Based on [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmet
 | `learn-verify` | fact-check a claim before it is taught |
 | `learn-visual` | one SVG per idea, viewed and fixed before use |
 
+## Helper agents
+
+`teach` hands four jobs to separate agents (subagents where the harness supports them, inline otherwise), defined in [`teach/references/agents.md`](teach/references/agents.md):
+
+| agent | runs | job |
+|---|---|---|
+| Prep | once per lecture deck (or on "prep week N") | reads the deck, writes claim-by-claim notes with page numbers to `.alvar/prep/` |
+| Verifier | after each plan, for inserted nodes, for claims beyond the slides | independently checks the plan's load-bearing claims; sees the claims and sources, never the lesson |
+| Visual | when a step needs a picture | draws, views and fixes one SVG |
+| Scribe | at the end of a session, or on resume | writes a short `## Resume here` block so the next session starts fast |
+
 Learner state (maps, sessions, logs) lives in each course folder's `.alvar/`, never in this repo.
 
 ## Install

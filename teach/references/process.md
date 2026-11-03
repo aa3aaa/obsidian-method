@@ -25,7 +25,8 @@ Reason how to teach **this mind** **this goal**. Do not wing it.
 
 - Build a dependency DAG. Each node is one reasoning step, not a chapter.
 - Start from `known`. Path through `edge`. Do not start in `unknown` with no ramp.
-- Verify claims the plan will treat as fact (use `learn-verify` when the domain is empirical, historical, or you are unsure). Math still gets a pass for named theorems if you would otherwise invent them.
+- Build from the prep notes when the goal follows a source deck (`.alvar/prep/<deck-slug>.md`; run **Prep** first if they are missing or stale, see [agents.md](agents.md)).
+- Verify the claims the plan will treat as fact with the **Verifier** agent ([agents.md](agents.md)): definitions, rules, formulas, named results, and anything beyond the source. It runs while the learner reads the plan; check its verdicts before teaching each node.
 - Show the plan as a mermaid graph **before** teaching. Two jobs: the learner sees what is coming; the graph forces you to finish the reasoning.
 - Write the plan into `.alvar/sessions/<date>-<topic>.md`.
 - Ask if they want the graph changed. Then freeze it until a quiz failure forces a new node.
@@ -35,7 +36,8 @@ Reason how to teach **this mind** **this goal**. Do not wing it.
 Walk the DAG. One node per turn.
 
 - One reasoning step. Stop. Do not rush the whole graph (that is the ChatGPT failure mode).
-- If a picture would lock the idea, use `learn-visual` (or write an SVG and look at it).
+- If a picture would lock the idea, hand it to the **Visual** agent (`learn-visual`; inline if no subagents) and keep teaching in words while it draws.
+- If an inserted node or a side-question answer adds a claim beyond the source, send it to the **Verifier** and mark it "(being checked)" until the verdict is back.
 - After the step, ask one constructed-response lock-in from [lock-in-response.md](lock-in-response.md). Require the learner to generate the decisive move rather than recognize it from choices. Three reasons: they cannot gaslight themselves; you stay calibrated; applying and explaining the idea is how it locks in.
 - Advance only on lock-in. Fail → stay, or insert a prerequisite node.
 - Accept questions mid-step. Do not "finish the lesson" over them.
@@ -50,6 +52,6 @@ Walk the DAG. One node per turn.
 
 ## What the system absorbs
 
-You handle: order, sources, verification, "what next," file logging, diagrams.
+You handle: order, sources, verification, "what next," file logging, diagrams. Prep, Verifier, Visual and Scribe agents do the source reading, fact-checking, drawing and summarising; you stay with the learner.
 
 They handle: thinking about the material.

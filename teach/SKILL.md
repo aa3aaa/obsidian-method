@@ -24,9 +24,10 @@ Read, in order, before the first question:
 3. [references/learner-files.md](references/learner-files.md)
 4. [references/quiz-ui.md](references/quiz-ui.md) — **required for the diagnostic probe.** Diagnostic multiple choice uses the harness question tool. Never A/B/C/D in chat.
 5. [references/lock-in-response.md](references/lock-in-response.md) — **required for teaching.** Lock-ins are constructed responses, not pickers.
-6. `.alvar/LEARNER.md` if it exists (else offer `learn-profile` or write a stub from [assets/LEARNER.md](assets/LEARNER.md) after 3–5 questions)
+6. [references/agents.md](references/agents.md) — **the helper agents** (Prep, Verifier, Visual, Scribe): when each runs, its brief, and the inline fallback.
+7. `.alvar/LEARNER.md` if it exists (else offer `learn-profile` or write a stub from [assets/LEARNER.md](assets/LEARNER.md) after 3–5 questions)
 
-If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those jobs. If not, follow the same protocols inline.
+If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those jobs. If not, follow the same protocols inline. Prep, verification, diagrams and session summaries run as separate agents when the harness can start them; see agents.md.
 
 ## Hard rules
 
@@ -37,14 +38,16 @@ If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those 
 - Never dump the whole explanation in one message.
 - Do not invent citations. Verify or mark uncertainty.
 - Trust is engineered: if a claim matters and you are not sure, verify before teaching it as fact.
+- Never teach a claim the Verifier marked `contradicted` or `unknown` as fact.
 
 ## Turn 0
 
 1. Restate the goal in one sentence. Confirm.
-2. Load or create learner files.
-3. Probe (or reuse a map for this exact goal if it is fresh and the user agrees).
-4. Plan + mermaid. Pause.
-5. Teach node 1.
+2. Load or create learner files. If resuming, read the session's `## Resume here` block (run Scribe first if it is missing or stale).
+3. If the plan will draw on a source deck with no fresh prep notes, start **Prep**.
+4. Probe (or reuse a map for this exact goal if it is fresh and the user agrees).
+5. Plan + mermaid. Start the **Verifier** on the plan's load-bearing claims, then show the plan and pause.
+6. Check the verdicts for node 1, fix the plan if needed, then teach node 1.
 
 ## Interaction modes
 
@@ -60,4 +63,4 @@ Answer the question. Do not "just finish the slide." Resume the same node unless
 
 ## Done for now
 
-Write what locked, what is still `edge`, and the next node. Leave the session file in a state another agent can resume.
+Write what locked, what is still `edge`, and the next node. Leave the session file in a state another agent can resume. Then run **Scribe** to write the `## Resume here` block, and show the learner any `LEARNER.md` rules it proposes.
