@@ -6,9 +6,12 @@ All session state lives in the **learner's working directory**, not in this skil
 .alvar/
   LEARNER.md                 # how this mind wants to be taught
   maps/<slug>.md             # probe results for one goal
-  sessions/<date>-<slug>.md  # plan + steps + quizzes
+  sessions/<date>-<slug>.md  # Resume block + plan + verification + steps + quizzes
+  prep/<deck-slug>.md        # source-deck notes from the Prep agent (one per deck)
   visuals/<slug>-<n>.svg     # diagrams from learn-visual
 ```
+
+Who writes what is in [agents.md](agents.md): Prep writes `prep/`, Visual writes `visuals/`, Scribe writes only the session's `## Resume here` block. The tutor writes everything else.
 
 Create `.alvar/` on first use.
 
@@ -20,6 +23,10 @@ The agent is not always launched inside the learner's folder (Claude Code and Co
 2. Otherwise read `~/.alvar/roots.md`, the index of known learner roots. Pick the root whose subject matches the goal. To resume without a named goal, pick the root with the most recently modified session file and say which one you chose. If two roots fit, ask.
 3. Treat the chosen root as the working directory for every `.alvar/` and display-log path. Use absolute paths when the harness does not let you change directory.
 4. Only create a new `.alvar/` after confirming the folder with the learner, then add a line for it to `~/.alvar/roots.md`.
+
+## Resuming
+
+In the chosen root, open the newest session file. Read its `## Resume here` block, the map it names, and `LEARNER.md`. Open the full `## Log` only for the pending node. If the block is missing, or older than the last log entry, run the Scribe agent first ([agents.md](agents.md)).
 
 `roots.md` holds one line per root: `- <absolute path> — <subject> — <display log or "none">`. It is an index only; never put learner state in it.
 
@@ -64,12 +71,19 @@ Date:
 Model:
 Goal:
 
+## Resume here
+(written by the Scribe agent; see agents.md)
+
 ## Plan
 \`\`\`mermaid
 graph TD
   A[covector] --> B[1-form]
   B --> C[wedge]
 \`\`\`
+
+## Verification
+| id | claim | verdict | source | teach as |
+|---|---|---|---|---|
 
 ## Log
 ### Node: covector
