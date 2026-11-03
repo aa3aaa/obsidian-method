@@ -34,7 +34,7 @@ The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](
 | Visual | when a step needs a picture | draws, views and fixes one SVG |
 | Scribe | at the end of a session, or on resume | writes a short `## Resume here` block so the next session starts fast |
 
-All four are on by default. To turn one off on your machine (the Verifier costs the most), create `~/.alvar/settings.md` with a line such as `verifier: off`; see "Switches" in `agents.md`.
+All four are on by default. To change one on your machine, create `~/.alvar/settings.md` with lines such as `verifier: lite` or `scribe: off`; see "Switches" in `agents.md`. The Verifier costs the most: `lite` checks slide claims by lookup against Prep's saved quotes (no extra agent) and sends only claims beyond the slides, plus the no-conditions check on truths, to one cheap-model agent per session.
 
 Learner state (maps, sessions, logs) lives in each course folder's `.alvar/`, never in this repo.
 
