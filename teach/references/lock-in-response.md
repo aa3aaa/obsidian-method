@@ -18,6 +18,13 @@ Use the course's notation and require only the evidence the node needs:
 
 Keep the response small enough to fit one reasoning step. “Explain it as if teaching someone” is useful only when it exposes the mechanism; do not reward vague simplification over correct mathematics.
 
+Writing the prompt:
+
+- **One decisive question.** Multi-part checks tend to come back partly answered, usually missing the arithmetic part.
+- **The question carries its own data.** Put the actual table, numbers or code in the prompt. Never write "use slide N's table" and make the learner go and find it.
+- **Self-contained references.** When a prompt or explanation leans on earlier material, restate that material (the numbers, the formula, the claim), not just "node 11's model". A node number may follow in brackets.
+- **No plug-and-chug.** Do not make the main task plugging numbers into a formula just taught. Give the numbers, or ask about meaning, choice, or what changes. Keep arithmetic only when the setup itself is what is being tested, and once the setup is right, waive trivial arithmetic.
+
 ## Grade the response
 
 Grade the method, result, conditions, and explanation—not writing polish.
@@ -33,6 +40,12 @@ Grade the method, result, conditions, and explanation—not writing polish.
 | `I don't know` about an idea never taught | `insert-prereq` / `unknown` | provide a ramp; do not count as a wrong guess |
 
 Give the verdict first, identify the exact working step that succeeds or fails, and state the governing rule. Do not reveal a full solution before deciding whether a smaller hint or prerequisite would preserve useful struggle.
+
+### Unanswered and skipped parts
+
+- If the learner leaves part of a check unanswered, ask that part again, without revealing its answer, until they answer it. Do not move on.
+- Reveal and move on only when they explicitly ask to skip ("skip this", "just tell me", "can we skip this calculation"). Honour that without arguing, and record the node as taught-not-verified.
+- Correcting a wrong answer is teaching, not skipping; it does not need permission.
 
 ## Persist and continue
 
