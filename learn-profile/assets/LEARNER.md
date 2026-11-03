@@ -23,3 +23,5 @@ Fill this in (or let `/learn-profile` interview you). The teacher reads it every
 - Write maps and sessions under `.alvar/`
 - Visuals: SVG when a picture would lock the idea
 - I read session markdown in: editor / Obsidian / other
+- Display log: none (or a note in this folder, e.g. `<Course> Learning Log.md`; naming one turns on the visible lesson log)
+- Answers: reasoning in the agent chat; diagnostic choices through the harness quiz picker (or: typed in the chat with working)

@@ -51,6 +51,8 @@ One right answer. No trick options that hinge on wording. Put **I don't know** a
 | wrong, foundation missing | `unknown` |
 | I don't know | `blocked` or `unknown` |
 
+**Explain-back after each batch.** Before the next batch, ask the learner to explain why each of their answers is right (or what they were unsure of). Grade that, then fill the gaps in a line each. A correct letter with no explanation is provisional at most: explain-backs regularly expose an `unknown` hidden behind a right letter. Waive trivial arithmetic once the setup is right. If the learner prefers to type answers with working instead of picking letters (LEARNER.md says so, or they close the picker to type), take the answer in chat.
+
 After each batch, update the map. Stop when the upcoming lesson's dependencies are all labeled — not when you have asked "enough questions."
 
 ## Map file

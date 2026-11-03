@@ -34,13 +34,40 @@ The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](
 | Visual | when a step needs a picture | draws, views and fixes one SVG |
 | Scribe | at the end of a session, or on resume | writes a short `## Resume here` block so the next session starts fast |
 
-All four are on by default. To change one on your machine, create `~/.alvar/settings.md` with lines such as `verifier: lite` or `scribe: off`; see "Switches" in `agents.md`. The Verifier costs the most: `lite` checks slide claims by lookup against Prep's saved quotes (no extra agent) and sends only claims beyond the slides, plus the no-conditions check on truths, to one cheap-model agent per session.
+Prep, Visual and Scribe are on by default. The Verifier runs in **lite** mode by default: it checks slide claims by lookup against Prep's saved quotes (no extra agent) and sends only claims beyond the slides, plus the no-conditions check on truths, to one cheap-model agent per session. See "Switches" in `agents.md` to change any of this.
 
 Learner state (maps, sessions, logs) lives in each course folder's `.alvar/`, never in this repo.
 
-## Install
+## Setup
 
-Clone to `~/.agents/skills` (or anywhere) and symlink each skill folder into your agent's skills directory, e.g. `ln -s ~/.agents/skills/teach ~/.claude/skills/teach`.
+**1. Install the skills.** Clone this repo and link each skill into your agent's skills folder:
+
+```bash
+git clone https://github.com/samueltlai/teach.git ~/src/teach
+mkdir -p ~/.claude/skills ~/.agents/skills
+for s in teach probe learn-profile learn-verify learn-visual; do
+  ln -s ~/src/teach/$s ~/.claude/skills/$s   # Claude Code
+  ln -s ~/src/teach/$s ~/.agents/skills/$s   # Codex and other agents that read ~/.agents/skills
+done
+```
+
+Other agents: link into wherever they look for `SKILL.md` folders. Update later with `git -C ~/src/teach pull`.
+
+**2. Install Poppler** so lecture PDFs can be read page by page (Prep depends on it): `brew install poppler` on macOS, `apt install poppler-utils` on Debian/Ubuntu.
+
+**3. Set up a course folder.** Open your agent in (or point it at) the folder for one course, put the lecture slides there, and run `/learn-profile`. It writes `.alvar/LEARNER.md` and adds the folder to `~/.alvar/roots.md`, so later sessions find it from any directory. Tell the profile where the slides are; `teach` treats them as the source of truth.
+
+**4. Obsidian (optional, recommended).** Open the course folder as an Obsidian vault. When `/learn-profile` asks where you read, say Obsidian: it creates `<Course> Learning Log.md` and sets it as the display log. Lessons, plans (mermaid) and checks (LaTeX) then appear there, rendered, while you answer in the agent chat. Diagrams are copied into a `visuals/` folder beside the log, because Obsidian ignores `.alvar/`.
+
+**5. Settings (optional).** Create `~/.alvar/settings.md` to change the helper agents, for example:
+
+```markdown
+# Alvar settings
+verifier: on    # full Verifier (default: lite); or off
+visual: off
+```
+
+**6. Start.** Say `/teach <what you want to learn>`, or "continue" to resume the latest lesson.
 
 ## Credits
 

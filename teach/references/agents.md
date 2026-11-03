@@ -13,16 +13,18 @@ The tutor keeps everything else: talking to the learner, writing the display log
 
 ## Switches
 
-Read `~/.alvar/settings.md` at the start of every session, if it exists. It is the learner's personal, machine-wide settings file and is never part of this repo. Each line is `<agent>: on | off` (the Verifier also takes `lite`); a missing file or line means `on`. Example:
+Read `~/.alvar/settings.md` at the start of every session, if it exists. It is the learner's personal, machine-wide settings file and is never part of this repo. Each line is `<agent>: on | off` (the Verifier also takes `lite`). A missing file or line means `on` for Prep, Visual and Scribe, and **`lite` for the Verifier**. Example:
 
 ```markdown
 # Alvar settings
-verifier: lite
+verifier: on
+scribe: off
 ```
 
 An agent that is `off` is not run, as a subagent or inline. What replaces it:
 
-- **`verifier: lite`** — verification at close to no extra usage; see "Lite mode" under Verifier.
+- **`verifier: lite`** (default) — verification at close to no extra usage; see "Lite mode" under Verifier.
+- **`verifier: on`** — the full Verifier: every load-bearing claim checked, at a noticeably higher usage cost; see "Full mode" under Verifier.
 - **`verifier: off`** — no plan-wide or per-node verification and no truth-node condition check. Cite the source's page for each claim; mark anything not in the source *beyond the source*; for a truth node, drop any candidate you know needs a caveat. Verify a single claim yourself (the `learn-verify` method, inline) only when the learner asks "is that true?" or you are genuinely unsure of a claim you are about to teach as fact. Leave the session file's `## Verification` section out.
 - **`prep: off`**, **`visual: off`**, **`scribe: off`** — do that job's work inline as you go, the way the tutor did before helper agents existed (read slides directly, draw only when asked, read the full session log on resume).
 
@@ -78,7 +80,7 @@ Copy no more than a sentence or a table at a time; summarise everything else.
 
 ## Verifier
 
-*Skip this section if `~/.alvar/settings.md` says `verifier: off`; see Switches. If it says `verifier: lite`, follow "Lite mode" below instead of the full triggers.*
+*The mode comes from `~/.alvar/settings.md` (see Switches): **`lite` by default**, `on` for full mode, `off` to skip this section.*
 
 ### Lite mode
 

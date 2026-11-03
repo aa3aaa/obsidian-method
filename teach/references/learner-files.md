@@ -22,7 +22,7 @@ The agent is not always launched inside the learner's folder (Claude Code and Co
 1. If the working directory has `.alvar/`, use it.
 2. Otherwise read `~/.alvar/roots.md`, the index of known learner roots. Pick the root whose subject matches the goal. To resume without a named goal, pick the root with the most recently modified session file and say which one you chose. If two roots fit, ask.
 3. Treat the chosen root as the working directory for every `.alvar/` and display-log path. Use absolute paths when the harness does not let you change directory.
-4. Only create a new `.alvar/` after confirming the folder with the learner, then add a line for it to `~/.alvar/roots.md`.
+4. Only create a new `.alvar/` after confirming the folder with the learner, then add a line for it to `~/.alvar/roots.md` (create that file, headed `# Learner roots`, if it does not exist).
 
 ## Resuming
 
@@ -109,6 +109,8 @@ Before showing a plan, teaching a node, calling a diagnostic picker, or inviting
 - exactly one reasoning step
 - the pending check: either every unbiased diagnostic choice or one option-free teaching lock-in
 - the latest result and next route after the learner answers
+
+**Mirror everything.** Every explanation the learner receives goes into the display log in the same turn: lessons, checks, grading and corrections, **and answers to side questions** (as a `### You asked: …` block). Write it to the log before replying in chat. The `.alvar/` files are for resuming; the display log is what the learner reads and revises from, so it must be complete.
 
 Use Obsidian-compatible math delimiters: `$...$` inline and `$$...$$` for display equations. Write real LaTeX commands such as `\sqrt{y}`, `\frac{a}{b}`, and `\infty`; do not use bare formula text or Unicode approximations when mathematical typesetting matters.
 
