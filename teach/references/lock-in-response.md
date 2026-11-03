@@ -27,8 +27,10 @@ Grade the method, result, conditions, and explanation—not writing polish.
 | correct decisive step, result, and sound reason | `lock-in` | advance |
 | correct result but missing or unsupported reasoning | `retry` / `edge` | ask for the decisive step |
 | sound method with a local algebra or arithmetic slip | `retry` / `edge` | identify only the slip, then give a parallel check |
+| right answer for a surface reason (rote matching) | `retry` / `edge` | switch the node to discovery ([discovery.md](discovery.md)) |
 | misconception reveals a missing dependency | `insert-prereq` | add the smallest prerequisite node |
-| `I don't know` or equivalent | `insert-prereq` / `unknown` | provide a ramp; do not count as a wrong guess |
+| `I don't know` or confusion about an idea this node taught | `retry` / `edge` | switch the node to discovery ([discovery.md](discovery.md)); do not count as a wrong guess |
+| `I don't know` about an idea never taught | `insert-prereq` / `unknown` | provide a ramp; do not count as a wrong guess |
 
 Give the verdict first, identify the exact working step that succeeds or fails, and state the governing rule. Do not reveal a full solution before deciding whether a smaller hint or prerequisite would preserve useful struggle.
 

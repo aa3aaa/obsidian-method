@@ -87,6 +87,7 @@ graph TD
 
 ## Log
 ### Node: covector
+- style: step | truth | discover (planned | confusion | retry | request)
 - taught:
 - visual:
 - lock-in prompt:

@@ -2,7 +2,7 @@
 
 My working copy of the **Alvar-method tutoring skills** for coding agents (Claude Code, Codex and others that read `SKILL.md` folders).
 
-Based on [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmethod) (MIT), which implements Eero Alvar's [*How I Use AI to Learn Things*](https://youtu.be/kzcI5F4tGiU), with local changes:
+The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](https://youtu.be/kzcI5F4tGiU). The skill files started as [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmethod) (MIT). See [Credits](#credits) for exactly what came from where. Local changes:
 
 - free-response lock-ins after each teaching step (diagnostic probes stay multiple choice)
 - a visible Markdown display log (Obsidian) mirrored from the canonical `.alvar/` state
@@ -18,6 +18,10 @@ Based on [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmet
 | `learn-profile` | interview that writes `.alvar/LEARNER.md` |
 | `learn-verify` | fact-check a claim before it is taught |
 | `learn-visual` | one SVG per idea, viewed and fixed before use |
+
+## Discovery style
+
+`teach` tags each plan node `truth` (a fact accepted as stated, no conditions), `discover` (a result that feels arbitrary unless you see how it could have been found) or `step` (everything else). Discover nodes open with a concrete problem and walk a motivated path to the result. A node also switches to discovery mid-lesson when the learner is confused ("explain this further", "I don't understand this"), when a retry shows rote matching, or on request; "just tell me" always wins. See [`teach/references/discovery.md`](teach/references/discovery.md).
 
 ## Helper agents
 
@@ -35,3 +39,12 @@ Learner state (maps, sessions, logs) lives in each course folder's `.alvar/`, ne
 ## Install
 
 Clone to `~/.agents/skills` (or anywhere) and symlink each skill folder into your agent's skills directory, e.g. `ln -s ~/.agents/skills/teach ~/.claude/skills/teach`.
+
+## Credits
+
+- **Eero Alvar** — the learning method this whole repo runs: one teacher for one mind, teaching at the edge of understanding, probe → plan → teach, a lock-in after every step, and trust engineered through verification. From his video [*How I Use AI to Learn Things*](https://youtu.be/kzcI5F4tGiU).
+- **Eero Alvar's own system, [amosblomqvist/learn](https://github.com/amosblomqvist/learn)** — the source of two ideas here: the **discovery style** (unconditional truths first, then "how could I have discovered this?") and **handing research and diagrams to subagents**, which the helper agents follow. That repo has no licence, so nothing from it is copied: `discovery.md` and `agents.md` are fresh write-ups of the ideas.
+- **Vasanth Sreeram, [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmethod)** — the original portable `SKILL.md` implementation (`teach`, `probe`, `learn-profile`, `learn-verify`, `learn-visual`) that these files started from, used under the MIT licence; its notice is in [LICENSE](LICENSE).
+- Changes in this repo (free-response lock-ins, Obsidian display log, roots index, helper agents, discovery style) are my own, made with Claude Code.
+
+Thanks to all of them. If you like this, go watch the video and star their repos.
