@@ -47,8 +47,8 @@ If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those 
 2. Load or create learner files. If resuming, read the session's `## Resume here` block (run Scribe first if it is missing or stale).
 3. If the plan will draw on a source deck with no fresh prep notes, start **Prep**.
 4. Probe (or reuse a map for this exact goal if it is fresh and the user agrees).
-5. Plan + mermaid, with every node tagged `truth`, `discover` or `step` (discovery.md). Start the **Verifier** on the plan's load-bearing claims, then show the plan and pause.
-6. Check the verdicts for node 1, fix the plan if needed, then teach node 1.
+5. Plan + mermaid, with every node tagged `truth`, `discover` or `step` (discovery.md). Start the **Verifier** on the plan's load-bearing claims (unless `~/.alvar/settings.md` switches it off; see agents.md), then show the plan and pause.
+6. Check the verdicts for node 1 if the Verifier ran, fix the plan if needed, then teach node 1.
 
 ## Interaction modes
 

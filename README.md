@@ -34,6 +34,8 @@ The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](
 | Visual | when a step needs a picture | draws, views and fixes one SVG |
 | Scribe | at the end of a session, or on resume | writes a short `## Resume here` block so the next session starts fast |
 
+All four are on by default. To turn one off on your machine (the Verifier costs the most), create `~/.alvar/settings.md` with a line such as `verifier: off`; see "Switches" in `agents.md`.
+
 Learner state (maps, sessions, logs) lives in each course folder's `.alvar/`, never in this repo.
 
 ## Install

@@ -11,6 +11,22 @@ Four jobs run **outside the live exchange** with the learner, so the tutor's con
 
 The tutor keeps everything else: talking to the learner, writing the display log, setting and grading lock-ins, updating the map, and editing `LEARNER.md` (only with the learner's agreement).
 
+## Switches
+
+Read `~/.alvar/settings.md` at the start of every session, if it exists. It is the learner's personal, machine-wide settings file and is never part of this repo. Each line is `<agent>: on | off`; a missing file or line means `on`. Example:
+
+```markdown
+# Alvar settings
+verifier: off
+```
+
+An agent that is `off` is not run, as a subagent or inline. What replaces it:
+
+- **`verifier: off`** — no plan-wide or per-node verification and no truth-node condition check. Cite the source's page for each claim; mark anything not in the source *beyond the source*; for a truth node, drop any candidate you know needs a caveat. Verify a single claim yourself (the `learn-verify` method, inline) only when the learner asks "is that true?" or you are genuinely unsure of a claim you are about to teach as fact. Leave the session file's `## Verification` section out.
+- **`prep: off`**, **`visual: off`**, **`scribe: off`** — do that job's work inline as you go, the way the tutor did before helper agents existed (read slides directly, draw only when asked, read the full session log on resume).
+
+Say once per session which agents are off, in the session file header (`Agents off: verifier`).
+
 ## Running them
 
 - **If the harness can start subagents** (Claude Code: the Agent tool; other harnesses: their equivalent), run each job as one, in the background where possible, and carry on with the learner while it works. Several Verifier agents can run in parallel.
@@ -60,6 +76,8 @@ Copy no more than a sentence or a table at a time; summarise everything else.
 **Tutor use.** Plan from the Outline and Claims, cite their page numbers, and take question data from Worked examples so every question carries its own numbers. Mark anything not in the notes as *beyond the slides*.
 
 ## Verifier
+
+*Skip this section if `~/.alvar/settings.md` says `verifier: off`; see Switches.*
 
 **Trigger.**
 1. **Plan drafted.** Launch before showing the mermaid plan; the learner reads the plan while it runs. Check the result before teaching the first node it covers.
