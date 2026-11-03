@@ -1,0 +1,13 @@
+# Track only the Alvar tutoring skills; this folder also holds unrelated
+# skills installed by other tools (AWS, etc.).
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/teach/
+!/probe/
+!/learn-profile/
+!/learn-verify/
+!/learn-visual/
+# teach-discover is adapted from an unlicensed repo (amosblomqvist/learn),
+# so it stays local and is not published.
