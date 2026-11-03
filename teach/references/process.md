@@ -27,7 +27,7 @@ Reason how to teach **this mind** **this goal**. Do not wing it.
 - Tag every node `truth`, `discover` or `step` and draw each tag with its shape ([discovery.md](discovery.md)). Discover nodes hang only off locked or earlier nodes.
 - Start from `known`. Path through `edge`. Do not start in `unknown` with no ramp.
 - Build from the prep notes when the goal follows a source deck (`.alvar/prep/<deck-slug>.md`; run **Prep** first if they are missing or stale, see [agents.md](agents.md)).
-- Verify the claims the plan will treat as fact with the **Verifier** agent ([agents.md](agents.md)): definitions, rules, formulas, named results, and anything beyond the source. It runs while the learner reads the plan; check its verdicts before teaching each node.
+- Verify the claims the plan will treat as fact with the **Verifier** agent ([agents.md](agents.md)): definitions, rules, formulas, named results, and anything beyond the source. It runs while the learner reads the plan; check its verdicts before teaching each node. If `~/.alvar/settings.md` sets it to `lite` or `off`, follow that mode in agents.md instead.
 - Show the plan as a mermaid graph **before** teaching. Two jobs: the learner sees what is coming; the graph forces you to finish the reasoning.
 - Write the plan into `.alvar/sessions/<date>-<topic>.md`.
 - Ask if they want the graph changed. Then freeze it until a quiz failure forces a new node.
@@ -38,7 +38,7 @@ Walk the DAG. One node per turn.
 
 - One reasoning step. Stop. Do not rush the whole graph (that is the ChatGPT failure mode).
 - If a picture would lock the idea, hand it to the **Visual** agent (`learn-visual`; inline if no subagents) and keep teaching in words while it draws.
-- If an inserted node or a side-question answer adds a claim beyond the source, send it to the **Verifier** and mark it "(being checked)" until the verdict is back.
+- If an inserted node or a side-question answer adds a claim beyond the source, send it to the **Verifier** and mark it "(being checked)" until the verdict is back. In lite mode, queue it instead of sending it at once; with the Verifier off, mark it *beyond the source*.
 - After the step, ask one constructed-response lock-in from [lock-in-response.md](lock-in-response.md). Require the learner to generate the decisive move rather than recognize it from choices. Three reasons: they cannot gaslight themselves; you stay calibrated; applying and explaining the idea is how it locks in.
 - Deliver each node in its tagged style: truth plainly, discover as a motivated path from a concrete problem, step as usual ([discovery.md](discovery.md)).
 - Advance only on lock-in. Fail → stay, or insert a prerequisite node. Confusion or a rote retry → switch the node to discovery ([discovery.md](discovery.md)).

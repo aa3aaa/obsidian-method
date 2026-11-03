@@ -11,6 +11,23 @@ Four jobs run **outside the live exchange** with the learner, so the tutor's con
 
 The tutor keeps everything else: talking to the learner, writing the display log, setting and grading lock-ins, updating the map, and editing `LEARNER.md` (only with the learner's agreement).
 
+## Switches
+
+Read `~/.alvar/settings.md` at the start of every session, if it exists. It is the learner's personal, machine-wide settings file and is never part of this repo. Each line is `<agent>: on | off` (the Verifier also takes `lite`); a missing file or line means `on`. Example:
+
+```markdown
+# Alvar settings
+verifier: lite
+```
+
+An agent that is `off` is not run, as a subagent or inline. What replaces it:
+
+- **`verifier: lite`** — verification at close to no extra usage; see "Lite mode" under Verifier.
+- **`verifier: off`** — no plan-wide or per-node verification and no truth-node condition check. Cite the source's page for each claim; mark anything not in the source *beyond the source*; for a truth node, drop any candidate you know needs a caveat. Verify a single claim yourself (the `learn-verify` method, inline) only when the learner asks "is that true?" or you are genuinely unsure of a claim you are about to teach as fact. Leave the session file's `## Verification` section out.
+- **`prep: off`**, **`visual: off`**, **`scribe: off`** — do that job's work inline as you go, the way the tutor did before helper agents existed (read slides directly, draw only when asked, read the full session log on resume).
+
+Say once per session which agents are off, in the session file header (`Agents off: verifier`).
+
 ## Running them
 
 - **If the harness can start subagents** (Claude Code: the Agent tool; other harnesses: their equivalent), run each job as one, in the background where possible, and carry on with the learner while it works. Several Verifier agents can run in parallel.
@@ -41,9 +58,9 @@ Pages: <n> (numbering: footer | pdf)
 - p.<a>–<b> <section title>
 
 ## Claims
-| id | page | claim (one falsifiable sentence, deck notation) | kind |
-|---|---|---|---|
-| P1 | 4 | ... | definition / rule / formula / example / warning |
+| id | page | claim (one falsifiable sentence, deck notation) | quote (the deck's exact words, at most one sentence or formula) | kind |
+|---|---|---|---|---|
+| P1 | 4 | ... | "..." | definition / rule / formula / example / warning |
 
 ## Worked examples
 - p.<n>: <setup, data, result — enough to reuse without the deck>
@@ -60,6 +77,30 @@ Copy no more than a sentence or a table at a time; summarise everything else.
 **Tutor use.** Plan from the Outline and Claims, cite their page numbers, and take question data from Worked examples so every question carries its own numbers. Mark anything not in the notes as *beyond the slides*.
 
 ## Verifier
+
+*Skip this section if `~/.alvar/settings.md` says `verifier: off`; see Switches. If it says `verifier: lite`, follow "Lite mode" below instead of the full triggers.*
+
+### Lite mode
+
+The full Verifier re-reads sources for every load-bearing claim. Lite mode spends extra usage only on the claims most likely to be wrong.
+
+1. **Slide claims: a lookup, no agent.** Prep already read the deck and saved each claim with the deck's exact quote and page. When you teach a claim that comes from the deck, match it against its prep row. If it matches, note `source: P<id> p.<n>` in that node's log. If it does not match, or there is no row, reread that one page yourself and correct the claim before teaching it.
+2. **Risky claims: one cheap agent per session.** Queue only:
+   - claims *beyond the source* (not in the deck or prep notes), and
+   - the no-conditions check for each `truth` node.
+   At plan time, queue them for the nodes you expect to teach **this session**, not the whole plan. If the queue is empty, start no agent.
+3. **Run it small.** One Verifier agent for the whole queue, on the **cheapest capable model** the harness offers (Claude Code: the Agent tool's `model: "haiku"`; elsewhere the harness default). Give it only the queued claims and, for each, the matching prep quote and page; it opens the deck only for a page the quote does not settle, and searches the web only for claims beyond the source.
+4. **Mid-session additions** (side-question answers, inserted nodes): mark the claim "(being checked)" in the display log and add it to the queue. Send the queue when it holds three or more claims, or at "done for now" before Scribe runs. Do not start an agent per claim.
+5. **Double-check bad news.** If the agent returns `contradicted` or `unknown`, check that claim yourself against the source it cited before you change the plan or correct the learner. A cheap model's error must never become the learner's.
+6. **Record** the agent's rows in the session's `## Verification` section, as in full mode. Slide claims checked by lookup stay in their node logs.
+
+7. **The learner asks** "is that true?": add the claim to the queue and send the queue now; a direct question deserves an answer this turn.
+
+Full mode's Independence, Brief and "Acting on verdicts" rules apply to the lite agent too.
+
+Without subagent support, do step 2's checks inline, and only for claims beyond the source.
+
+### Full mode (`verifier: on`)
 
 **Trigger.**
 1. **Plan drafted.** Launch before showing the mermaid plan; the learner reads the plan while it runs. Check the result before teaching the first node it covers.

@@ -71,4 +71,4 @@ In the session file, each node's log gets a style line:
 - style: step | truth | discover (planned | confusion | retry | request)
 ```
 
-The Verifier checks every truth node for hidden conditions (see agents.md). The Scribe carries the current node's style into the Resume block.
+The Verifier checks every truth node for hidden conditions (see agents.md); if it is switched off, do that check yourself while planning. The Scribe carries the current node's style into the Resume block.

@@ -67,3 +67,4 @@ When `teach` starts you as its Verifier (see [../teach/references/agents.md](../
 - You know only the claims, not the lesson. Do not guess what the tutor meant; judge the sentence as written.
 - Write no files. Return only the table: `| id | claim | verdict | source (page or URL actually opened) | teach as |`.
 - If the brief repeats an assessed-work rule, follow it: never open or quote a lab or assignment deliverable.
+- **Lite mode** (the brief says so): each claim comes with the deck's quote and page. Judge it against that quote first; open the deck only at a page the quote does not settle, and search the web only for claims marked beyond the source. Keep reading to the minimum.
