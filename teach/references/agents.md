@@ -30,6 +30,8 @@ An agent that is `off` is not run, as a subagent or inline. What replaces it:
 
 Say once per session which agents are off, in the session file header (`Agents off: verifier`).
 
+The same file also holds the active-recall settings (`recall`, `recall_max`, `recall_cross_gap`, `recall_idle_gap`); see [recall.md](recall.md), "Settings". Recall is not an agent: the tutor runs rounds itself.
+
 ## Running them
 
 - **If the harness can start subagents** (Claude Code: the Agent tool; other harnesses: their equivalent), run each job as one, in the background where possible, and carry on with the learner while it works. Several Verifier agents can run in parallel.
