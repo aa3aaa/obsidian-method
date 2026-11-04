@@ -9,9 +9,14 @@ All session state lives in the **learner's working directory**, not in this skil
   sessions/<date>-<slug>.md  # Resume block + plan + verification + steps + quizzes
   prep/<deck-slug>.md        # source-deck notes from the Prep agent (one per deck)
   visuals/<slug>-<n>.svg     # diagrams from learn-visual
+  recall.md                  # active-recall deck: one row per card
+  recall-state.json          # study day and last activity, kept by the recall hook
+  recall-log.md              # every recall round: questions, answers, results
 ```
 
-Who writes what is in [agents.md](agents.md): Prep writes `prep/`, Visual writes `visuals/`, Scribe writes only the session's `## Resume here` block. The tutor writes everything else.
+Who writes what is in [agents.md](agents.md): Prep writes `prep/`, Visual writes `visuals/`, Scribe writes only the session's `## Resume here` block. The recall hook writes `recall-state.json`, where the tutor writes only `skip_day` ([recall.md](recall.md)). The tutor writes everything else.
+
+The recall hook finds the learner root by walking up from the folder the session started in, and never treats the home folder as one (`~/.alvar/` holds only `settings.md` and `roots.md`). Sessions started inside a course folder, or any folder under it, get the automatic recall offer; sessions started elsewhere still get it from the `teach` Turn 0 check.
 
 Create `.alvar/` on first use.
 

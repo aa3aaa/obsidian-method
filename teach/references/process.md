@@ -45,6 +45,7 @@ Walk the DAG. One node per turn.
 - Accept questions mid-step. Do not "finish the lesson" over them.
 - Give them things they can accept at face value only after the step they rest on is locked.
 - Persist what happened in the session file.
+- Each node that locks in becomes an active-recall card, so it comes back on a spaced schedule ([recall.md](recall.md)).
 
 ## Feedback rules
 

@@ -56,4 +56,4 @@ Record in `.alvar/sessions/<date>-<slug>.md`:
 - grading evidence
 - result: `lock-in` | `retry` | `insert-prereq`
 
-Update the topic map with the resulting `known`, `edge`, `unknown`, or `blocked` evidence. Then update the display log with the concise verdict, correction if needed, and next route before teaching anything else.
+Update the topic map with the resulting `known`, `edge`, `unknown`, or `blocked` evidence. When the result is `lock-in`, or the node ends taught-not-verified, add the node's card to `.alvar/recall.md` ([recall.md](recall.md), "Making cards"). Then update the display log with the concise verdict, correction if needed, and next route before teaching anything else.

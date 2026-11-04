@@ -26,9 +26,10 @@ Read, in order, before the first question:
 5. [references/lock-in-response.md](references/lock-in-response.md) — **required for teaching.** Lock-ins are constructed responses, not pickers.
 6. [references/agents.md](references/agents.md) — **the helper agents** (Prep, Verifier, Visual, Scribe): when each runs, its brief, and the inline fallback.
 7. [references/discovery.md](references/discovery.md) — **the discovery style**: tagging nodes `truth` / `discover` / `step`, and switching a node to discovery when the learner is confused.
-8. `.alvar/LEARNER.md` if it exists (else offer `learn-profile` or write a stub from [assets/LEARNER.md](assets/LEARNER.md) after 3–5 questions)
+8. [references/recall.md](references/recall.md) — **active recall**: a card for every locked node, and a recall round offered when cards are due.
+9. `.alvar/LEARNER.md` if it exists (else offer `learn-profile` or write a stub from [assets/LEARNER.md](assets/LEARNER.md) after 3–5 questions)
 
-If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those jobs. If not, follow the same protocols inline. Prep, verification, diagrams and session summaries run as separate agents when the harness can start them; see agents.md.
+If `probe`, `learn-visual`, `learn-verify`, or `recall` are installed, use them for those jobs. If not, follow the same protocols inline. Prep, verification, diagrams and session summaries run as separate agents when the harness can start them; see agents.md.
 
 ## Hard rules
 
@@ -45,10 +46,11 @@ If `probe`, `learn-visual`, or `learn-verify` are installed, use them for those 
 
 1. Restate the goal in one sentence. Confirm.
 2. Load or create learner files. If resuming, read the session's `## Resume here` block (run Scribe first if it is missing or stale).
-3. If the plan will draw on a source deck with no fresh prep notes, start **Prep**.
-4. Probe (or reuse a map for this exact goal if it is fresh and the user agrees).
-5. Plan + mermaid, with every node tagged `truth`, `discover` or `step` (discovery.md). Start the **Verifier** on the plan's load-bearing claims (full, lite or off per `~/.alvar/settings.md`; see agents.md), then show the plan and pause.
-6. Check the verdicts for node 1 if the Verifier ran, fix the plan if needed, then teach node 1.
+3. **Recall check.** If context reports "Active recall status" with cards due, or the hook is not watching this root and `.alvar/recall.md` has cards due today (see "Without the hook" in recall.md), offer a round first ([references/recall.md](references/recall.md), "Offering a round"). After the round, "Not now" or "Skip today", carry on with the goal.
+4. If the plan will draw on a source deck with no fresh prep notes, start **Prep**.
+5. Probe (or reuse a map for this exact goal if it is fresh and the user agrees).
+6. Plan + mermaid, with every node tagged `truth`, `discover` or `step` (discovery.md). Start the **Verifier** on the plan's load-bearing claims (full, lite or off per `~/.alvar/settings.md`; see agents.md), then show the plan and pause.
+7. Check the verdicts for node 1 if the Verifier ran, fix the plan if needed, then teach node 1.
 
 ## Interaction modes
 
@@ -56,7 +58,9 @@ During the initial probe, call the harness quiz UI in [references/quiz-ui.md](re
 
 After teaching a node, follow [references/lock-in-response.md](references/lock-in-response.md): put one unbiased free-response prompt on the learner's display surface, invite the learner to answer in the normal conversation input, and stop. Do not open a multiple-choice picker for a teaching lock-in.
 
-When the learner replies, grade the method and justification, update the map and session file, and then choose the next node, a retry, or an inserted prerequisite.
+When the learner replies, grade the method and justification, update the map and session file, and then choose the next node, a retry, or an inserted prerequisite. When a node locks in, add its recall card to `.alvar/recall.md` ([references/recall.md](references/recall.md), "Making cards").
+
+If recall becomes due mid-session (the hook reports "Active recall status" with a prompt), finish grading any answer the learner just gave, then make the offer before the next node.
 
 ## When they interrupt
 
@@ -66,4 +70,4 @@ If they are **confused** about the concept ("explain this further", "I don't und
 
 ## Done for now
 
-Write what locked, what is still `edge`, and the next node. Leave the session file in a state another agent can resume. Then run **Scribe** to write the `## Resume here` block, and show the learner any `LEARNER.md` rules it proposes.
+Write what locked, what is still `edge`, and the next node. Check that every node locked this session has its recall card, and tell the learner how many cards were added and when the first ones are due. Leave the session file in a state another agent can resume. Then run **Scribe** to write the `## Resume here` block, and show the learner any `LEARNER.md` rules it proposes.
