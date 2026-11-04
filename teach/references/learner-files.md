@@ -133,15 +133,17 @@ Before showing a plan, teaching a node, calling a diagnostic picker, or inviting
 <the pending check: every unbiased diagnostic choice, or one option-free lock-in>
 
 ## Last result
-<one or two lines: the previous verdict and route, e.g. "✓ Step 3 locked: observers register themselves">
+<the previous check in full, copied from the archive: its question with its data,
+ the learner's answer, the verdict, the correction and the correct idea, and the route>
 
 <sub>Full record: [[<archive note name>]]</sub>
 ```
 
 - Drop sections that are empty (no plan yet during the probe, no last result on the first step).
-- During a probe the heading is `# <goal> · probe`; during recall it is `# Recall · card <i> of <k>`, with the card's question under `## Your check` and the last card's result under `## Last result`.
+- During a probe the heading is `# <goal> · probe`; during recall it is `# Recall · card <i> of <k>`, with the card's question under `## Your check` and the last card's full result (question, answer, grade and correct idea) under `## Last result`.
 - At "done for now", rewrite it as a short stopping point: what locked, the next step, and the archive link. Do not leave a half-answered check in it.
-- Keep it to one screen. If a step's explanation is long, it belongs in the step, but the plan, side questions and result stay brief.
+- **Keep the last result whole.** Never shrink it to a one-line verdict: the learner revises from it, and a verdict without the question, their answer and the correction loses the context. Copy the result block exactly as appended to the archive, with the question it grades (a check's code or data has left `## Your check` by then, so it must come with the result). It is replaced, not accumulated, when the next check is graded.
+- Everything else stays brief: the plan, side questions and the step itself, so the live note still holds only the current surface plus that one full result.
 
 ### The archive
 
@@ -159,4 +161,4 @@ Use Obsidian-compatible math delimiters: `$...$` inline and `$$...$$` for displa
 
 For a diagnostic probe, write the complete mathematical question and choices labelled `A`–`D` to the display log **before** opening the picker. Keep `D` as **I don't know**. The harness picker may then contain only the fixed reference instruction and letter buttons.
 
-For a teaching lock-in, write one complete free-response prompt with no choices, answer bank, or correctness cues. The learner answers through the harness's normal conversation input and may write `I don't know`. After grading, record the learner's response and grading evidence in the canonical session file, append the result and route to the archive, and put the one-line verdict under `## Last result` in the live note.
+For a teaching lock-in, write one complete free-response prompt with no choices, answer bank, or correctness cues. The learner answers through the harness's normal conversation input and may write `I don't know`. After grading, record the learner's response and grading evidence in the canonical session file, append the result and route to the archive, and copy that whole result (with the question it grades) under `## Last result` in the live note.

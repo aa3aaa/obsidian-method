@@ -9,7 +9,7 @@ The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](
 - `~/.alvar/roots.md` index of learner roots, so sessions resume from any starting directory
 - harness-neutral wording so the same files work in Claude Code and Codex
 - **active recall**: every locked step becomes a spaced-repetition card, and returning to a course folder offers a short recall round when cards are due (new in this repo)
-- **a one-screen Learning Log**: the Obsidian note shows only the current step, with the full record in a per-session archive (new in this repo)
+- **a live Learning Log**: the Obsidian note shows only the current step and your last result in full, with the complete record in a per-session archive (new in this repo)
 
 ## Skills
 
@@ -85,7 +85,7 @@ Start a new Claude Code session afterwards. To see what it would do in a course 
 
 **4. Obsidian (optional, recommended).** Open the course folder as an Obsidian vault. When `/learn-profile` asks where you read, say Obsidian: it creates `<Course> Learning Log.md` and sets it as the display log. Lessons, plans (mermaid) and checks (LaTeX) then appear there, rendered, while you answer in the agent chat. Diagrams are copied into a `visuals/` folder beside the log, because Obsidian ignores `.alvar/`.
 
-The Learning Log is a **live note**: it is rewritten every turn to show only the current step (plan, explanation, your check, last result), so it stays one screen long and you never have to scroll to the bottom. The full record of each session is appended to a separate archive note, `Learning Log/<date> <topic>.md` (recall rounds go to `Learning Log/<date> Recall.md`), for when you want to look back. Set `Display archive: none` in `.alvar/LEARNER.md` to turn the archive off. A Learning Log written under the old append-everything layout is moved, unchanged, to `Learning Log/<date> Earlier log.md` the first time.
+The Learning Log is a **live note**: it is rewritten every turn to show only the current step (plan, explanation, your check) and the full result of your last check (the question, your answer, the grade and the correction), so you never have to scroll to the bottom of a growing log. The full record of each session is appended to a separate archive note, `Learning Log/<date> <topic>.md` (recall rounds go to `Learning Log/<date> Recall.md`), for when you want to look back. Set `Display archive: none` in `.alvar/LEARNER.md` to turn the archive off. A Learning Log written under the old append-everything layout is moved, unchanged, to `Learning Log/<date> Earlier log.md` the first time.
 
 **5. Settings (optional).** Create `~/.alvar/settings.md` to change the helper agents or recall, for example:
 
