@@ -29,8 +29,9 @@ Install **how this mind wants to be taught**. The file is the teacher. Do not cr
 If they read in **Obsidian** (or any Markdown viewer), set up the display log now, or `teach` will never use it:
 
 - The learner root must sit inside an Obsidian vault. If it does not, tell them to open the folder as a vault (Obsidian → Open folder as vault) first.
-- Propose a note name such as `<Course> Learning Log.md` in the learner root, and write it as the `Display log:` line in the Artifacts section.
-- Create the note with a one-line heading, and use that name as the display-log field of the root's line in `~/.alvar/roots.md`.
+- Propose a note name such as `<Course> Learning Log.md` in the learner root, and write it as the `Display log:` line in the Artifacts section. This is the **live note**: it only ever shows the current step, so it stays short.
+- Explain the archive in one line: a full record of each session goes to a `Learning Log/` folder beside it, for looking back. Write `Display archive: Learning Log/` (or the folder they prefer, or `none` if they only want the live note).
+- Create the live note with a one-line heading, and use its name as the display-log field of the root's line in `~/.alvar/roots.md`.
 
 Do not ask all six in one message. 2–3 questions per turn, through the harness quiz UI in [../teach/references/quiz-ui.md](../teach/references/quiz-ui.md) — not as a markdown list.
 

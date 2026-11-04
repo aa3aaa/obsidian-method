@@ -9,6 +9,7 @@ The method is **Eero Alvar's**, from his video [*How I Use AI to Learn Things*](
 - `~/.alvar/roots.md` index of learner roots, so sessions resume from any starting directory
 - harness-neutral wording so the same files work in Claude Code and Codex
 - **active recall**: every locked step becomes a spaced-repetition card, and returning to a course folder offers a short recall round when cards are due (new in this repo)
+- **a one-screen Learning Log**: the Obsidian note shows only the current step, with the full record in a per-session archive (new in this repo)
 
 ## Skills
 
@@ -84,6 +85,8 @@ Start a new Claude Code session afterwards. To see what it would do in a course 
 
 **4. Obsidian (optional, recommended).** Open the course folder as an Obsidian vault. When `/learn-profile` asks where you read, say Obsidian: it creates `<Course> Learning Log.md` and sets it as the display log. Lessons, plans (mermaid) and checks (LaTeX) then appear there, rendered, while you answer in the agent chat. Diagrams are copied into a `visuals/` folder beside the log, because Obsidian ignores `.alvar/`.
 
+The Learning Log is a **live note**: it is rewritten every turn to show only the current step (plan, explanation, your check, last result), so it stays one screen long and you never have to scroll to the bottom. The full record of each session is appended to a separate archive note, `Learning Log/<date> <topic>.md` (recall rounds go to `Learning Log/<date> Recall.md`), for when you want to look back. Set `Display archive: none` in `.alvar/LEARNER.md` to turn the archive off. A Learning Log written under the old append-everything layout is moved, unchanged, to `Learning Log/<date> Earlier log.md` the first time.
+
 **5. Settings (optional).** Create `~/.alvar/settings.md` to change the helper agents or recall, for example:
 
 ```markdown
@@ -105,6 +108,6 @@ recall_day_ceiling: 12 # ...or the new study day starts at this hour anyway
 - **Eero Alvar's own system, [amosblomqvist/learn](https://github.com/amosblomqvist/learn)** — the source of two ideas here: the **discovery style** (unconditional truths first, then "how could I have discovered this?") and **handing research and diagrams to subagents**, which the helper agents follow. That repo has no licence, so nothing from it is copied: `discovery.md` and `agents.md` are fresh write-ups of the ideas.
 - **Vasanth Sreeram, [vasanthsreeram/Alvarmethod](https://github.com/vasanthsreeram/Alvarmethod)** — the original portable `SKILL.md` implementation (`teach`, `probe`, `learn-profile`, `learn-verify`, `learn-visual`) that these files started from, used under the MIT licence; its notice is in [LICENSE](LICENSE).
 - **Samuel Lai, [samueltlai/teach](https://github.com/samueltlai/teach)** — the version this repo is copied from, with its history: free-response lock-ins, the Obsidian display log, the roots index, the helper agents and the discovery style.
-- **Active recall** (the `recall` skill, `teach/references/recall.md` and `hooks/`) is new in this repo.
+- **Active recall** (the `recall` skill, `teach/references/recall.md` and `hooks/`) and the **live Learning Log with an archive** are new in this repo.
 
 Thanks to all of them. If you like this, go watch the video and star their repos.

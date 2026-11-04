@@ -133,7 +133,7 @@ Without subagent support, do step 2's checks inline, and only for claims beyond 
 
 - `confirmed`: teach it.
 - `qualified`: teach the "teach as" wording, condition included.
-- `contradicted`: fix the plan before teaching that node. If it was already taught, add a correction block to the display log and tell the learner plainly.
+- `contradicted`: fix the plan before teaching that node. If it was already taught, append a correction block to the archive, show it at the top of the live note until the next step, and tell the learner plainly.
 - `unknown`: do not teach it as fact. Drop it, or teach it labelled unverified.
 
 ## Visual
