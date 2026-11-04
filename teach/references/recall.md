@@ -144,7 +144,7 @@ If the learner opened with a question or a pending lock-in answer, answer or gra
 - R1 Observer pattern — Q: <the question, with its data> — A: <short faithful record> — + (box 2 → 3, due 2026-11-12)
 ```
 
-- If `LEARNER.md` names a display log, mirror the round there as a `## Recall — <date>` section: each question when asked, then its result and the correct idea after grading, following the display-log rules in [learner-files.md](learner-files.md).
+- If `LEARNER.md` names a display log, follow the display-log rules in [learner-files.md](learner-files.md): the live note shows only the current card (`# Recall · card <i> of <k>`, its question, and the last card's result), and the whole round (each question, answer, grade and correct idea) is appended to the archive note `<Display archive>/<date> Recall.md`. When the round ends, rewrite the live note back to the lesson the learner returns to.
 - Then go back to what the learner originally asked for.
 
 ## Settings

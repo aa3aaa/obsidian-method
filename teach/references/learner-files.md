@@ -105,20 +105,58 @@ Keep these files updated as you go. They are the persistence layer (the portable
 
 ## Optional visible Markdown display log
 
-When `.alvar/LEARNER.md` names a `Display log`, keep that vault-relative Markdown file synchronized as the learner-facing presentation surface. The `.alvar/` map and session files remain canonical state; the display log is a visible mirror for Obsidian or a markdown-log pane.
+When `.alvar/LEARNER.md` names a `Display log`, the learner reads lessons in Obsidian (or another Markdown viewer) and answers in the agent chat. The display log has two parts, and "update the display log" anywhere in these skills means **both**:
 
-Before showing a plan, teaching a node, calling a diagnostic picker, or inviting a constructed response, update the display log first. It should contain only the current learning surface:
+| part | file | how it changes | what it is for |
+|---|---|---|---|
+| **Live note** | the `Display log` file, e.g. `COMP2511 Learning Log.md` | **rewritten in full** every update | what the learner is looking at right now; always short, so it never needs scrolling |
+| **Archive** | one note per session in the `Display archive` folder (default `Learning Log/`), e.g. `Learning Log/2026-11-04 Observer pattern.md` | **appended** in order, never rewritten | the complete record, for looking back; the learner is not expected to keep it open |
 
-- the goal and current node
-- the Mermaid dependency DAG
-- exactly one reasoning step
-- the pending check: either every unbiased diagnostic choice or one option-free teaching lock-in
-- the latest result and next route after the learner answers
+The `.alvar/` map and session files remain canonical state; both parts are visible mirrors of it. With `Display archive: none` in `LEARNER.md`, skip the archive and write only the live note.
 
-**Mirror everything.** Every explanation the learner receives goes into the display log in the same turn: lessons, checks, grading and corrections, **and answers to side questions** (as a `### You asked: …` block). Write it to the log before replying in chat. The `.alvar/` files are for resuming; the display log is what the learner reads and revises from, so it must be complete.
+### The live note
+
+Before showing a plan, teaching a node, calling a diagnostic picker, or inviting a constructed response, rewrite the live note. It holds **only the current learning surface**, in this order, and nothing older:
+
+```markdown
+# <goal> · step <k> of <n>
+<the Mermaid DAG: append :::current to the current node and end the graph with
+ classDef current fill:#ffe08a,stroke:#b8860b,stroke-width:3px ; then the one-line tag legend>
+
+## Step <k> · <node name>
+<exactly one reasoning step>
+
+### You asked: <question>          ← only while a side question about this step is open
+<answer>
+
+## Your check
+<the pending check: every unbiased diagnostic choice, or one option-free lock-in>
+
+## Last result
+<one or two lines: the previous verdict and route, e.g. "✓ Step 3 locked: observers register themselves">
+
+<sub>Full record: [[<archive note name>]]</sub>
+```
+
+- Drop sections that are empty (no plan yet during the probe, no last result on the first step).
+- During a probe the heading is `# <goal> · probe`; during recall it is `# Recall · card <i> of <k>`, with the card's question under `## Your check` and the last card's result under `## Last result`.
+- At "done for now", rewrite it as a short stopping point: what locked, the next step, and the archive link. Do not leave a half-answered check in it.
+- Keep it to one screen. If a step's explanation is long, it belongs in the step, but the plan, side questions and result stay brief.
+
+### The archive
+
+**Mirror everything** into the session's archive note in the same turn, in order: the plan when shown, each step as taught, each check, the learner's answer (short faithful record), grading and corrections, and answers to side questions (as a `### You asked: …` block). Append; never rewrite earlier entries.
+
+- One archive note per session file: `<Display archive>/<YYYY-MM-DD> <Goal>.md`, matching `.alvar/sessions/<date>-<slug>.md`. A resumed session keeps appending to its note. Start it with `# <goal>` and a link back to the live note.
+- A recall round goes to `<Display archive>/<YYYY-MM-DD> Recall.md` (one per study day).
+- Create the archive folder on first use.
+
+**Write order each turn:** append to the archive, rewrite the live note, then reply in chat. The `.alvar/` files are for resuming; the archive is the readable record; the live note is the screen.
+
+**Moving an existing long log.** If the live note already holds more than the current surface (it was written under the old append-only layout), move its whole contents unchanged into `<Display archive>/<date> Earlier log.md` (never delete it), then rewrite the live note. Tell the learner in one line where the old content went.
 
 Use Obsidian-compatible math delimiters: `$...$` inline and `$$...$$` for display equations. Write real LaTeX commands such as `\sqrt{y}`, `\frac{a}{b}`, and `\infty`; do not use bare formula text or Unicode approximations when mathematical typesetting matters.
 
 For a diagnostic probe, write the complete mathematical question and choices labelled `A`–`D` to the display log **before** opening the picker. Keep `D` as **I don't know**. The harness picker may then contain only the fixed reference instruction and letter buttons.
 
-For a teaching lock-in, write one complete free-response prompt with no choices, answer bank, or correctness cues. The learner answers through the harness's normal conversation input and may write `I don't know`. After grading, record the learner's response and grading evidence in the canonical session file, then mirror a concise result and route to the display log.
+For a teaching lock-in, write one complete free-response prompt with no choices, answer bank, or correctness cues. The learner answers through the harness's normal conversation input and may write `I don't know`. After grading, record the learner's response and grading evidence in the canonical session file, append the result and route to the archive, and put the one-line verdict under `## Last result` in the live note.

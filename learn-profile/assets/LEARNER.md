@@ -24,4 +24,5 @@ Fill this in (or let `/learn-profile` interview you). The teacher reads it every
 - Visuals: SVG when a picture would lock the idea
 - I read session markdown in: editor / Obsidian / other
 - Display log: none (or a note in this folder, e.g. `<Course> Learning Log.md`; naming one turns on the visible lesson log)
+- Display archive: Learning Log/ (full record of each session, one note per session; `none` for the live note only)
 - Answers: reasoning in the agent chat; diagnostic choices through the harness quiz picker (or: typed in the chat with working)
