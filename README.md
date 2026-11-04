@@ -29,7 +29,7 @@ When cards are due, you get offered a round (picker: **Do 5 / Quick 2 / Not now 
 
 - **New session** in a course folder (or any folder under it): offered whenever cards are due.
 - **Same session the next day**: offered on your first prompt after a break, once a new study day has started.
-- **Working through midnight**: crossing midnight after at least 2 hours idle starts the new study day straight away. If you were still working when midnight passed, it waits until you've been idle for 4 hours, so a late-night session isn't interrupted.
+- **Working through midnight**: crossing midnight after at least 2 hours idle starts the new study day straight away. If you were still working when midnight passed, it waits until you've been idle for 4 hours (or until noon, if you never stop), so a late-night session isn't interrupted.
 - **Never** when nothing is due, after **Skip today**, or twice in one session on the same study day.
 
 The automatic offer comes from a small Claude Code hook ([`hooks/recall-check.js`](hooks/recall-check.js)). Without it (Codex, other harnesses), `teach` checks for due cards at the start of each lesson, and `/recall` works anywhere. Full rules: [`teach/references/recall.md`](teach/references/recall.md).
@@ -94,6 +94,7 @@ recall: on          # off disables recall offers
 recall_max: 5       # cards in a full round
 recall_cross_gap: 2 # hours idle at midnight that start a new study day
 recall_idle_gap: 4  # hours idle needed after working through midnight
+recall_day_ceiling: 12 # ...or the new study day starts at this hour anyway
 ```
 
 **6. Start.** Start Claude Code inside the course folder (so the recall hook can see it), then say `/teach <what you want to learn>`, "continue" to resume the latest lesson, or `/recall` to review.

@@ -40,18 +40,20 @@ All in the learner root's `.alvar/` (see [learner-files.md](learner-files.md)):
 
 ### The state — `recall-state.json`
 
-Written by the hook ([hooks/recall-check.js](../../hooks/recall-check.js)) on every session start, prompt and turn end:
+Written by the hook ([hooks/recall-check.js](../../hooks/recall-check.js)) on session starts, prompts and turn ends (activity-only updates at most every 5 minutes):
 
 ```json
 { "study_day": "2026-11-05", "last_activity": "2026-11-05T08:12:03.000Z",
-  "last_offer": { "session": "…", "day": "2026-11-05" }, "skip_day": "2026-11-05" }
+  "sessions": { "<session id>": "2026-11-05" }, "skip_day": "2026-11-05" }
 ```
 
-The tutor only ever writes `skip_day`, by read-modify-write that keeps every other field. If the file does not exist, create it with just `skip_day`.
+`sessions` records the last study day each session saw; it is how the hook offers once per session per study day. The tutor only ever writes `skip_day`, by read-modify-write that keeps every other field. If the file does not exist, create it with just `skip_day`.
+
+**The study day for dates you write.** Read `study_day` from `recall-state.json` when the hook is watching this root (see "Without the hook" below); otherwise use today's date. Use that one value for `last`, `due` and log headings throughout a round or lesson.
 
 ## Making cards
 
-- **When a lock-in passes**, add one card for that node: box `1`, `last` = today, `due` = study day + 1, history `MM-DD L`. A node that taught two separable ideas may get two cards; never more.
+- **When a lock-in passes**, add one card for that node: box `1`, `last` = study day, `due` = study day + 1, history `MM-DD L`. A node that taught two separable ideas may get two cards; never more.
 - **When a node ends taught-not-verified** (the learner asked to skip), add its card the same way. It is the card most likely to need the review.
 - `truth` nodes get a `concept` card; `discover` nodes get a card on the decisive move (`concept` or `method`); `step` nodes take whatever kind fits.
 - Write the `idea` from what was actually taught and verified, in the course's notation. Never put a claim the Verifier marked `contradicted` or `unknown` on a card.
@@ -90,14 +92,14 @@ Two routes lead to the same offer.
 
 **With the hook installed (Claude Code).** The hook decides and tells you through context headed "Active recall status". It works on a **study day**, not the raw date:
 
-- A new study day starts on a new calendar day once the learner has had a break: crossing midnight after at least `recall_cross_gap` hours idle (default 2) starts it at once; crossing midnight mid-session keeps yesterday's study day until an idle gap of at least `recall_idle_gap` hours (default 4).
+- A new study day starts on a new calendar day once the learner has had a break: crossing midnight after at least `recall_cross_gap` hours idle (default 2) starts it at once; crossing midnight mid-session keeps yesterday's study day until an idle gap of at least `recall_idle_gap` hours (default 4), or until `recall_day_ceiling` o'clock (default 12) if there never is one. A study day never lags more than one calendar day, and one in the future (clock or timezone moved back) resets to today.
 - A **new session** (startup, `/clear`, fork) in a learner root offers recall whenever cards are due.
 - In an **open or resumed session**, recall is offered on the first prompt after a new study day starts.
 - Never when `recall: off`, when nothing is due, when the learner chose **Skip today** for this study day, or twice in one session on one study day.
 
-Cards are due when `due` ≤ study day. Use the study day the hook reports for every date you write.
+Cards are due when `due` ≤ study day.
 
-**Without the hook** (other harnesses, the desktop app, the hook not installed, or a session started outside the course folder so the hook cannot see it). First check whether the hook is watching this root: it rewrites `last_activity` in `recall-state.json` on every prompt and turn end, so a `last_activity` within the last 10 minutes means it is. Then trust the hook and do not offer on your own; it already applied the study-day rules. Otherwise, at the start of every `teach` session and when `/recall` runs, read `recall.md`. If cards are due on today's date and `recall-state.json` has no `skip_day` for today, make the same offer, once per session. Use today's date as the study day.
+**Without the hook** (other harnesses, the desktop app, the hook not installed, or a session started outside the course folder so the hook cannot see it). First check whether the hook is watching this root: it rewrites `last_activity` in `recall-state.json` on every prompt and turn end, so a `last_activity` within the last 10 minutes means it is (another Claude Code session in the same folder can also cause this; either way the hook is handling the folder). Then trust the hook and do not offer on your own; it already applied the study-day rules. Otherwise, at the start of every `teach` session and when `/recall` runs, read `recall.md`. If cards are due on today's date and `recall-state.json` has no `skip_day` for today, make the same offer, once per session. Use today's date as the study day.
 
 ## Offering a round
 
@@ -108,7 +110,7 @@ Make the offer as a picker (the harness question tool, see [quiz-ui.md](quiz-ui.
 - options, in this order:
   - `Do <k>`: `k` = min(n, `recall_max`); description names the topics
   - `Quick 2`: shown only when k > 2
-  - `Not now`: "Carry on; I'll ask again next session"
+  - `Not now`: "Carry on; I'll ask again in a new session or tomorrow"
   - `Skip today`: "No more recall prompts until tomorrow"
 
 Then:
@@ -154,6 +156,9 @@ recall: on            # off: never offer, and the hook stays silent
 recall_max: 5         # cards in a full round
 recall_cross_gap: 2   # hours idle when crossing midnight that start a new study day
 recall_idle_gap: 4    # hours idle needed after working through midnight
+recall_day_ceiling: 12 # o'clock: after working through midnight, the new study day starts by then at the latest
 ```
+
+`--status` also lists any deck rows it could not read (a bad date or box), which are skipped until fixed. A pipe inside code, such as `a || b`, is read correctly, but escaping it as `\|` is safest.
 
 To check what the hook would do, from a course folder run `node <repo>/hooks/recall-check.js --status`.

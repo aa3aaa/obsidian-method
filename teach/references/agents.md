@@ -30,7 +30,7 @@ An agent that is `off` is not run, as a subagent or inline. What replaces it:
 
 Say once per session which agents are off, in the session file header (`Agents off: verifier`).
 
-The same file also holds the active-recall settings (`recall`, `recall_max`, `recall_cross_gap`, `recall_idle_gap`); see [recall.md](recall.md), "Settings". Recall is not an agent: the tutor runs rounds itself.
+The same file also holds the active-recall settings (`recall`, `recall_max`, `recall_cross_gap`, `recall_idle_gap`, `recall_day_ceiling`); see [recall.md](recall.md), "Settings". Recall is not an agent: the tutor runs rounds itself.
 
 ## Running them
 
